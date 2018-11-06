@@ -1,0 +1,148 @@
+<html>
+    <head>
+        <style>
+            table {
+                width: 60%;
+                border: 1px double black;
+                border-collapse: collapse;
+            }
+            th, td {
+                height: 30px;
+                border: 1px double black;
+                border-collapse: collapse;
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+
+            Nama: <input type="text" id="nama" placeholder="Ketik nama ...">
+            
+            Tgl.Lahir: <input type="date" id="tgllahir" placeholder="Ketik tgl lahir ...">
+            
+            Kota: <input type="text" id="kota" placeholder="Ketik kota ...">
+            <br><br>
+            <button onclick="data()">D A F T A R</button>
+            <br><br>
+            <button onclick="">Sort Nama ▲ </button>
+            <button onclick="">Sort Nama ▼ </button>
+            <button onclick="">Sort Usia ▲ </button>
+            <button onclick="">Sort Usia ▼ </button>
+            <button onclick="">Sort Kota ▲ </button>
+            <button onclick="">Sort Kota ▼ </button>
+            <br><br>
+
+            
+        <table id="results">
+            <thead id="thead">
+            </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        </table>
+        <script>
+            var users = []
+            
+            function data(){
+                document.getElementById("tbody").innerHTML = ''
+                var dataUser = {
+                    nama: document.getElementById("nama").value,
+                    tgllahir: document.getElementById("tgllahir").value,
+                    kota: document.getElementById("kota").value,
+                    hari: function(tgllahir){
+                        var p = parseInt(users[i].tgllahir.substr(8,2))
+                        return p},
+                    month: function(tgllahir){
+                        var p = parseInt(users[i].tgllahir.substr(5,2))
+                        return p},
+                    bulan: function(tgllahir){
+                        if(users[i].tgllahir.substr(5,2) == 01){
+                        return 'Januari'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 02){
+                        return 'Februari'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 03){
+                        return 'Maret'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 04){
+                        return 'April'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 05){
+                        return 'Mei'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 06){
+                        return 'Juni'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 07){
+                        return 'Juli'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 08){
+                        return 'Agustus'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 09){
+                        return 'September'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 10){
+                        return 'Oktober'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 11){
+                        return 'November'
+                        }
+                        if(users[i].tgllahir.substr(5,2) == 12){
+                        return 'Desember'         
+                        }   
+                    },
+                    zodiac: function(hari, month){ 
+                        if((month == 1 && hari <= 20) || (month == 12 && hari >=22)) {
+                            return 'Capricorn';
+                        } else if ((month == 1 && hari >= 21) || (month == 2 && hari <= 18)) {
+                            return 'Aquarius';
+                        } else if((month == 2 && hari >= 19) || (month == 3 && hari <= 20)) {
+                            return 'Pisces';
+                        } else if((month == 3 && hari >= 21) || (month == 4 && hari <= 20)) {
+                            return 'Aries';
+                        } else if((month == 4 && hari >= 21) || (month == 5 && hari <= 20)) {
+                            return 'Taurus';
+                        } else if((month == 5 && hari >= 21) || (month == 6 && hari <= 20)) {
+                            return 'Gemini';
+                        } else if((month == 6 && hari >= 22) || (month == 7 && hari <= 22)) {
+                            return 'Cancer';
+                        } else if((month == 7 && hari >= 23) || (month == 8 && hari <= 23)) {
+                            return 'Leo';
+                        } else if((month == 8 && hari >= 24) || (month == 9 && hari <= 23)) {
+                            return 'Virgo';
+                        } else if((month == 9 && hari >= 24) || (month == 10 && hari <= 23)) {
+                            return 'Libra';
+                        } else if((month == 10 && hari >= 24) || (month == 11 && hari <= 22)) {
+                            return 'Scorpio';
+                        } else if((month == 11 && hari >= 23) || (month == 12 && hari <= 21)) {
+                            return 'Sagittarius';
+                        }
+                    },
+                    // usia:   function(){
+                    //     var Today = new Date()
+                    //     var difference = (Today - tgllahir)/((1000*60*60*24*365);
+                    //     var differenceString =  difference.toFixed(1);
+                    // },
+                    // pensiun: 55 - usia,
+                }
+                console.log(dataUser.hari)
+                console.log(dataUser.month)
+                console.log(dataUser.usia)
+                console.log(dataUser.tgllahir);
+                users.push(dataUser)
+                for(var i=0; i<users.length; i++){
+                    document.getElementById("tbody").innerHTML +=
+                    '<tr><th>' + users[i].nama + '</th><th>' + users[i].tgllahir.substr(8,2) + '</th><th>' + dataUser.bulan(users[i]) + '</th><th>' + users[i].tgllahir.substr(0,4) + '</th><th>' + dataUser.zodiac(users[i]) + '</th><th>'+ users[i].kota + '</th></tr>' 
+                }
+
+             document.getElementById("thead").innerHTML = '<tr><th>Nama</th> <th>Tanggal Lahir</th> <th>Zodiak</th> <th>Usia</th> <th>Pensiun</th> <th>Kota</th> <th>Hapus</th> </tr>'
+             
+            }
+            
+        </script>
+        </center>
+    </body>
+</html>
+
